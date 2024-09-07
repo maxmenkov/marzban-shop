@@ -10,11 +10,15 @@ PROTOCOLS = {
         {},
         ["VMess TCP"]
     ],
-    "vless": [
+    "vless_rso": [
         {
             "flow": "xtls-rprx-vision"
         },
         ["VLESS Reality Steal Oneself"]
+    ],
+    "vless_ws_tls": [
+        {},
+        ["VLESS WS Tls"]
     ],
     "trojan": [
         {},
