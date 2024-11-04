@@ -28,7 +28,7 @@ async def profile(message: Message):
 async def information(message: Message):
     await message.answer(
         _("Follow the <a href=\"{link}\">link</a> 🔗").format(
-            link=glv.config['ABOUT']),
+            link=glv.config['TG_INFO_CHANEL']),
         reply_markup=get_back_keyboard())
 
 @router.message(F.text == __("Support ❤️"))
