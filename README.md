@@ -44,7 +44,8 @@ After that edit goods.examples.json
         "title": <your_title_here>,
         "price": {
             "en": <price_for_crypto_payments>,
-            "ru": <price_for_yookassa_payments>
+            "ru": <price_for_yookassa_payments>,
+            "stars": <price_for_telegram_payments>
         },
         "callback": <unique_id_for_good>,
         "months": <umber_of_months>
@@ -95,6 +96,9 @@ docker compose up -d
 | WEBHOOK_URL | Webhook adress (url) (more deteails [here](#about-webhook)) |
 | WEBHOOK_PORT | Webhook port |
 | RENEW_NOTIFICATION_TIME | Scheduled time for exececute notify renew subscription task in format HH:mm |
+| EXPIRED_NOTIFICATION_TIME | Scheduled time for exececute notify users about expired subscription task in format HH:mm |
+| TG_INFO_CHANEL | Telegram chanel link |
+| STARS_PAYMENT_ENABLED | Enable stars payment |
 
 #### Difference between host and global
 
@@ -127,4 +131,3 @@ Don't forget to give the project a star! Thanks again!
 ### License
 
 The project is under the [GPL-3.0](https://github.com/gunsh1p/marzban-shop/blob/main/LICENSE) licence
-

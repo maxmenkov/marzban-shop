@@ -1,5 +1,3 @@
-import hashlib
-
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy import insert, select, update, delete
 
@@ -8,14 +6,43 @@ import glv
 
 engine = create_async_engine(glv.config['DB_URL'])
 
+import aiohttp
+from sqlalchemy import select, insert
+
+async def get_username_by_tg_id(tg_id: int) -> str:
+    tg_bot_token = glv.config['BOT_TOKEN']
+    url = f"https://api.telegram.org/bot{tg_bot_token}/getChat?chat_id={tg_id}"
+
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    if data.get('ok'):
+                        user = data.get('result')
+                        username = user.get('username')
+                        if username:
+                            return f"{username}_{tg_id}"[:32]
+                        else:
+                            return f"user_{tg_id}"[:32]
+                else:
+                    print(f"Error fetching user: {response.status}")
+                    return f"user_{tg_id}"[:32]
+    except aiohttp.ClientError as e:
+        print(f"Network error occurred: {e}")
+        return f"user_{tg_id}"[:32]
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        return f"user_{tg_id}"[:32]
+
 async def create_vpn_profile(tg_id: int):
     async with engine.connect() as conn:
         sql_query = select(VPNUsers).where(VPNUsers.tg_id == tg_id)
         result: VPNUsers = (await conn.execute(sql_query)).fetchone()
-        if result != None:
+        if result is not None:
             return
-        hash = hashlib.md5(str(tg_id).encode()).hexdigest()
-        sql_query = insert(VPNUsers).values(tg_id=tg_id, vpn_id=hash)
+        tg_username = await get_username_by_tg_id(tg_id)
+        sql_query = insert(VPNUsers).values(tg_id=tg_id, vpn_id=tg_username)
         await conn.execute(sql_query)
         await conn.commit()
 

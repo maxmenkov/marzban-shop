@@ -148,3 +148,8 @@ msgstr ""
 #: bot/keyboards/xtr_pay.py:6
 msgid "Pay"
 msgstr ""
+
+msgid "message_notify_expired_sub"
+msgstr "Hello 👋\n\n\"
+"We noticed that you did not renew your subscription 😢\n\n\"
+"If you have any comments or questions about the entire service, please write. Your opinion is important to us!"
