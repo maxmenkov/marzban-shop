@@ -41,7 +41,7 @@ async def notify_users_to_renew_sub():
 
 async def reset_sent_users():
     while True:
-        await asyncio.sleep(30)  # 86400 seconds = 24 hours
+        await asyncio.sleep(86400)  # 86400 seconds = 24 hours
         sent_users.clear()
 
 async def get_marzban_users_to_notify():
