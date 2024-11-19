@@ -14,6 +14,11 @@ router = Router(name="messages-router")
 
 @router.message(F.text == __("Join 🏄🏻‍♂️"))
 async def buy(message: Message):
+    await message.answer(
+        _("Read the <a href=\"{rules}\">rules</a> before buying").format(
+            rules=glv.config['RULES_LINK']), 
+        reply_markup=get_back_keyboard()
+    )
     await message.answer(_("Choose the appropriate tariff ⬇️"), reply_markup=get_buy_menu_keyboard())
 
 @router.message(F.text == __("My subscription 👤"))
@@ -28,22 +33,20 @@ async def profile(message: Message):
 async def information(message: Message):
     await message.answer(
         _("Follow the <a href=\"{link}\">link</a> 🔗").format(
-            link=glv.config['TG_INFO_CHANEL']),
-        reply_markup=get_back_keyboard())
+            link=glv.config['TG_INFO_CHANEL']))
 
 @router.message(F.text == __("Support ❤️"))
 async def support(message: Message):
     await message.answer(
         _("Follow the <a href=\"{link}\">link</a> and ask us a question. We are always happy to help 🤗").format(
-            link=glv.config['SUPPORT_LINK']),
-        reply_markup=get_back_keyboard())
+            link=glv.config['SUPPORT_LINK']))
 
 @router.message(F.text == __("5 days free 🆓"))
 async def test_subscription(message: Message):
     result = await had_test_sub(message.from_user.id)
     if result:
         await message.answer(
-            _("Your subscription is available in the \"My subscription 👤\" section."),
+            _("Sorry but you've already activated test subscription."),
             reply_markup=get_main_menu_keyboard(True))
         return
     result = await get_marzban_profile_db(message.from_user.id)
@@ -54,6 +57,11 @@ async def test_subscription(message: Message):
             link=glv.config['TG_INFO_CHANEL']),
         reply_markup=get_main_menu_keyboard(True)
     )
+    user = await marzban_api.get_marzban_profile(message.from_user.id)
+    if user is None:
+        await message.answer(_("Your profile is not active at the moment.\n️\nYou can choose \"5 days free 🆓\" or \"Join 🏄🏻‍♂️\"."), reply_markup=get_main_menu_keyboard(False))
+        return
+    await message.answer(_("Subscription page ⬇️"), reply_markup=get_subscription_keyboard(glv.config['PANEL_GLOBAL'] + user['subscription_url']))
     
 @router.message(F.text == __("⏪ Back"))
 async def start_text(message: Message):

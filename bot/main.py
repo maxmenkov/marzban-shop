@@ -8,6 +8,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.utils.i18n import I18n, SimpleI18nMiddleware
 from aiohttp import web 
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
+from aiogram.client.bot import DefaultBotProperties
 
 from handlers.commands import register_commands
 from handlers.messages import register_messages
@@ -18,7 +19,8 @@ from app.routes import check_crypto_payment, check_yookassa_payment
 from tasks import register
 import glv
 
-glv.bot = Bot(glv.config['BOT_TOKEN'], parse_mode=enums.ParseMode.HTML)
+default_properties = DefaultBotProperties(parse_mode=enums.ParseMode.HTML)
+glv.bot = Bot(glv.config['BOT_TOKEN'], default=default_properties)
 glv.storage = MemoryStorage()
 glv.dp = Dispatcher(storage=glv.storage)
 app = web.Application()

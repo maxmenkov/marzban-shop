@@ -1,4 +1,4 @@
-aiogram[i18n]==3.1.1
+aiogram[i18n]==3.14.0
 alembic==1.10.2
 SQLAlchemy[asyncio]
 pymysql
@@ -10,3 +10,4 @@ yookassa
 alembic
 wait-for-it
 aioschedule
+transliterate

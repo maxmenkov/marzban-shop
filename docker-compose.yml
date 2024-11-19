@@ -5,6 +5,7 @@ services:
         stop_signal: SIGINT
         network_mode: host
         environment:
+            TZ: Europe/Moscow
             BOT_TOKEN: ${BOT_TOKEN}
             SHOP_NAME: ${SHOP_NAME}
             PROTOCOLS: ${PROTOCOLS}
@@ -36,16 +37,30 @@ services:
             - "./goods.json:/app/goods.json"
             - "./locales:/app/locales"
         depends_on:
-            - db
+            db:
+              condition: service_healthy
     db:
-        image: mariadb:latest
+        image: mariadb:lts
         restart: always
         environment:
+            TZ: Europe/Moscow
             MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASS}
             MARIADB_DATABASE: ${DB_NAME}
             MARIADB_USER: ${DB_USER}
             MARIADB_PASSWORD: ${DB_PASS}
         ports:
             - 3406:3306
+        command:
+          - --host-cache-size=0
+          - --innodb-open-files=1024
+          - --innodb-buffer-pool-size=268435456
+          - --binlog_expire_logs_seconds=5184000 # 60 days
         volumes:
             - "./data/db:/var/lib/mysql"
+        healthcheck:
+          test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+          start_period: 10s
+          start_interval: 3s
+          interval: 10s
+          timeout: 5s
+          retries: 3

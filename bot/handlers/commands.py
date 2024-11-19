@@ -19,8 +19,8 @@ async def start(message: Message):
         name=message.from_user.first_name,
         title=glv.config.get('SHOP_NAME', 'VPN Shop')
     )
-    had_test_subscription = await had_test_sub(message.from_user.id)
-    await message.answer(text, reply_markup=get_main_menu_keyboard(had_test_subscription))
+    trial_expired = await had_test_sub(message.from_user.id)
+    await message.answer(text, reply_markup=get_main_menu_keyboard(trial_expired))
 
 def register_commands(dp: Dispatcher):
     dp.include_router(router)

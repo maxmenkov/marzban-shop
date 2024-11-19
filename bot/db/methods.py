@@ -4,10 +4,23 @@ from sqlalchemy import insert, select, update, delete
 from db.models import YPayments, CPayments, VPNUsers
 import glv
 
-engine = create_async_engine(glv.config['DB_URL'])
+engine = create_async_engine(
+    glv.config['DB_URL'],
+    pool_pre_ping=True,         # Автоматическая проверка соединения перед использованием
+    pool_recycle=28000          # Закрывает и восстанавливает соединение каждые 3600 секунд (1 час)
+)
 
 import aiohttp
-from sqlalchemy import select, insert
+import re
+from transliterate import translit
+
+# Функция для очистки и транслитерации имени
+def clean_and_transliterate(name: str) -> str:
+    # Транслитерируем имя в латиницу
+    transliterated_name = translit(name, 'ru', reversed=True)  # Преобразуем из кириллицы в латиницу
+    # Оставляем только буквы (a-z), цифры и подчеркивания
+    cleaned_name = re.sub(r'[^a-zA-Z0-9_]', '', transliterated_name)
+    return cleaned_name
 
 async def get_username_by_tg_id(tg_id: int) -> str:
     tg_bot_token = glv.config['BOT_TOKEN']
@@ -21,10 +34,23 @@ async def get_username_by_tg_id(tg_id: int) -> str:
                     if data.get('ok'):
                         user = data.get('result')
                         username = user.get('username')
+                        first_name = user.get('first_name', '')
+
+                        # Если есть username, используем его
                         if username:
-                            return f"{username}_{tg_id}"[:32]
+                            result = f"{username}_{tg_id}"
+                        # Если username нет, используем first_name после очистки
                         else:
-                            return f"user_{tg_id}"[:32]
+                            cleaned_first_name = clean_and_transliterate(first_name)
+                            result = f"{cleaned_first_name}_{tg_id}"
+
+                        # Обрезаем строку до 32 символов, но сохраняем подчеркивание
+                        if len(result) > 32:
+                            # Проверяем, чтобы символ "_" остался между именем и tg_id
+                            max_name_len = 32 - len(str(tg_id)) - 1  # Отнимаем место для tg_id и "_"
+                            result = result[:max_name_len] + f"_{tg_id}"
+
+                        return result
                 else:
                     print(f"Error fetching user: {response.status}")
                     return f"user_{tg_id}"[:32]
