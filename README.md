@@ -88,7 +88,7 @@ docker compose up -d
 | DB_NAME | Database name |
 | DB_USER | Database username |
 | DB_PASS | Database password |
-| DB_URL | Url (like postgresql+psycopg://user:password@server/db) there user is DB_USER, password is DB_PASS, server is database IP (localhost by default) and db is DB_NAME |
+| DB_PORT | Database port on host machine |
 | PANEL_HOST | URL to connect to the marzban panel (if installed on the same server as marzban-shop, specify localhost and port of the panel) |
 | PANEL_GLOBAL | URL to issue subscriptions (this parameter may be different from PANEL_HOST, more details [here](#difference-between-host-and-global)) |
 | PANEL_USER | Panel username |

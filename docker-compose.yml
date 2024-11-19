@@ -23,6 +23,7 @@ services:
             DB_USER: ${DB_USER}
             DB_PASS: ${DB_PASS}
             DB_ADDRESS: ${DB_ADDRESS}
+            DB_PORT: ${DB_PORT}
             PANEL_HOST: ${PANEL_HOST}
             PANEL_GLOBAL: ${PANEL_GLOBAL}
             PANEL_USER: ${PANEL_USER}
@@ -49,7 +50,7 @@ services:
             MARIADB_USER: ${DB_USER}
             MARIADB_PASSWORD: ${DB_PASS}
         ports:
-            - 3406:3306
+            - ${DB_PORT}:3306
         command:
           - --host-cache-size=0
           - --innodb-open-files=1024
