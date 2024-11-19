@@ -19,8 +19,7 @@ def get_main_menu_keyboard(trial_expired:bool, lang=None) -> ReplyKeyboardMarkup
             KeyboardButton(text=get_i18n_str("Frequent questions ℹ️", lang))
     ]
 
-    if trial_expired:
-        kb_raw.insert(0, KeyboardButton(text=get_i18n_str("My subscription 👤", lang)))
+    kb_raw.insert(0, KeyboardButton(text=get_i18n_str("My subscription 👤", lang)))
     
     kb.insert(1, kb_raw)
         
