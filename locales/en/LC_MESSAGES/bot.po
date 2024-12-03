@@ -50,11 +50,11 @@ msgstr ""
 msgid "Follow the <a href=\"{link}\">link</a> and ask us a question. We are always happy to help 🤗"
 msgstr ""
 
-msgid "\n\nGo to the subscription page to connect to the VPN:\n"
+msgid "\n\nGo to the subscription page to connect to the VPN:\n{link}"
 msgstr ""
 
 #: bot/handlers/messages.py:64
-msgid "Your subscription is available in the \"My subscription 👤\" section."
+msgid "Your subscription is available in the \"Access to VPN 🏄🏻‍♂️\" section."
 msgstr ""
 
 #: bot/handlers/messages.py:52
@@ -63,7 +63,7 @@ msgid ""
 "\n"
 "<a href=\"{link}\">Subscribe</a> so you don't miss any announcements ✅\n️"
 "\n"
-"Your subscription is purchased and available in the \"My subscription 👤\" section."
+"Your subscription is purchased and available in the \"Access to VPN 🏄🏻‍♂️\" section."
 msgstr ""
 
 #: bot/keyboards/back.py:7
@@ -76,10 +76,6 @@ msgstr ""
 
 #: bot/keyboards/main_menu.py:11
 msgid "Access to VPN 🏄🏻‍♂️"
-msgstr ""
-
-#: bot/keyboards/main_menu.py:14
-msgid "My subscription 👤"
 msgstr ""
 
 #: bot/keyboards/main_menu.py:15

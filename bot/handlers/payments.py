@@ -22,7 +22,7 @@ async def success_payment(message: Message):
     user = await get_marzban_profile_db(message.from_user.id)
     await marzban_api.generate_marzban_subscription(user.vpn_id, good)
     await message.answer(
-        text = _("Thank you for choice ❤️\n️\n<a href=\"{link}\">Subscribe</a> so you don't miss any announcements ✅\n️\nYour subscription is purchased and available in the \"My subscription 👤\" section.").format(
+        text = _("Thank you for choice ❤️\n️\n<a href=\"{link}\">Subscribe</a> so you don't miss any announcements ✅\n️\nYour subscription is purchased and available in the \"Access to VPN 🏄🏻‍♂️\" section.").format(
             link=glv.config['TG_INFO_CHANEL']),
         reply_markup=get_main_menu_keyboard(True, message.from_user.language_code))
     
