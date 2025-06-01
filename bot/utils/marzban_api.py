@@ -6,25 +6,11 @@ from db.methods import get_vpn_user
 import glv
 
 PROTOCOLS = {
-    "vmess": [
-        {},
-        ["VMess TCP"]
-    ],
     "vless": [
         {
             "flow": "xtls-rprx-vision"
         },
-        ["VLESS Reality Steal Oneself", "VLESS WS"]
-    ],
-    "trojan": [
-        {},
-        ["Trojan Websocket TLS"]
-    ],
-    "shadowsocks": [
-        {
-            "method": "chacha20-ietf-poly1305"
-        },
-        ["Shadowsocks TCP"]
+        ["VLESS Reality Steal Oneself", "VLESS WS", "VLESS Reality Steal Oneself DE", "VLESS WS DE", "VLESS Reality Steal Oneself NL", "VLESS WS NL"]
     ]
 }
 
