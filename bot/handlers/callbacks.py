@@ -6,7 +6,7 @@ from aiogram import Router, F
 from aiogram import Dispatcher
 from aiogram.types import CallbackQuery, LabeledPrice
 from aiogram.utils.i18n import gettext as _
-from panel import remnawave_panel
+from panel.panel_provider import get_panel
 
 from keyboards import get_main_menu_keyboard, get_payment_keyboard, get_pay_keyboard, \
     get_buy_menu_keyboard, get_xtr_pay_keyboard, get_back_to_help_keyboard, get_help_keyboard, \
@@ -17,7 +17,7 @@ from utils import goods, yookassa, cryptomus
 from panel import get_panel
 import glv
 
-router = Router(name="callbacks-router") 
+router = Router(name="callbacks-router")
 
 @router.callback_query(F.data.startswith("months_"))
 async def callback_month_amount_select(callback: CallbackQuery):
@@ -31,12 +31,12 @@ async def callback_month_amount_select(callback: CallbackQuery):
 async def callback_extend_data_limit(callback: CallbackQuery):
     panel = get_panel()
     panel_profile = await panel.get_panel_user(callback.from_user.id)
-    if not panel_profile or not panel_profile.data_limit or not panel_profile.expire: 
+    if not panel_profile or not panel_profile.data_limit or not panel_profile.expire:
         await callback.answer(_("message_error"), reply_markup=get_main_menu_keyboard())
         return
-    
+
     subscription_months_left = (panel_profile.expire.timestamp() - datetime.now().timestamp()) / 2592000
-    
+
     filtered_goods = [good for good in goods.get() if good['months'] > subscription_months_left and good['type'] == 'update']
     if filtered_goods:
         min_good = min(filtered_goods, key=lambda good: good['months'])
@@ -47,7 +47,7 @@ async def callback_extend_data_limit(callback: CallbackQuery):
         )
     else:
         await callback.answer(_("message_error"), reply_markup=get_main_menu_keyboard())
-    
+
     await callback.answer()
 
 @router.callback_query(F.data.startswith("pay_kassa_"))
@@ -58,8 +58,8 @@ async def callback_payment_method_select(callback: CallbackQuery):
         await callback.answer()
         return
     result = await yookassa.create_payment(
-        callback.from_user.id, 
-        data, 
+        callback.from_user.id,
+        data,
         callback.from_user.language_code)
     await callback.message.answer(
         _("To be paid – {amount} ₽ ⬇️").format(
@@ -79,7 +79,7 @@ async def callback_payment_method_select(callback: CallbackQuery):
     good = goods.get(data)
     discount = await get_user_promo_discount(callback.from_user.id)
     price = int(good['price']['stars'] * (1 - discount / 100))
-    prices = [LabeledPrice(label="XTR", amount=price)]  
+    prices = [LabeledPrice(label="XTR", amount=price)]
     await callback.message.answer_invoice(
         title = good['title'],
         currency="XTR",
@@ -101,7 +101,7 @@ async def callback_payment_method_select(callback: CallbackQuery):
         await callback.answer()
         return
     result = await cryptomus.create_payment(
-        callback.from_user.id, 
+        callback.from_user.id,
         data,
         callback.from_user.language_code)
     now = datetime.now()
@@ -123,9 +123,9 @@ async def callback_trial(callback: CallbackQuery):
             reply_markup=get_main_menu_keyboard())
         return
     result = await get_vpn_user(callback.from_user.id)
-    panel = remnawave_panel.RemnawavePanel()
-    panel_profile: remnawave_panel.PanelProfile = await panel.generate_test_subscription(result.vpn_id)
-    if not panel_profile: 
+    panel = get_panel()
+    panel_profile = await panel.generate_test_subscription(result.vpn_id)
+    if not panel_profile:
         await callback.answer(_("message_error"), reply_markup=get_main_menu_keyboard())
         logging.error("Failed to generate test subscription for user %s", callback.from_user.id)
         return

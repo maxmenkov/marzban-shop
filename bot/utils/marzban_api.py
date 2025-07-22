@@ -59,3 +59,8 @@ class Marzban:
         }
         resp = await self._send_request("POST", f"/api/user/{username}/reset", headers=headers)
         return resp
+
+    async def get_inbounds(self):
+        headers = {"Authorization": f"Bearer {self.token}"}
+        resp = await self._send_request("GET", "/api/inbounds", headers=headers)
+        return resp
