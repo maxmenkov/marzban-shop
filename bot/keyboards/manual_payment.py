@@ -4,7 +4,7 @@ from aiogram.utils.i18n import gettext as _
 import glv
 
 
-def get_manual_payment_keyboard(payment_id) -> InlineKeyboardBuilder:
+def get_manual_payment_keyboard(payment_id: int, callback: str | None = None) -> InlineKeyboardBuilder:
     builder = InlineKeyboardBuilder()
 
     if glv.config.get('PAY_SBER_URL'):
@@ -20,11 +20,17 @@ def get_manual_payment_keyboard(payment_id) -> InlineKeyboardBuilder:
         )
 
     builder.button(
-        text=_('I have paid'),
+        text=_('I have paid ✅'),
         callback_data=f"manual_paid_{payment_id}"
     )
 
-    builder.adjust(2, 1)
+    if callback:
+        builder.button(
+            text=_('⬅️ Назад'),
+            callback_data=f"back_manual_{payment_id}",
+        )
+
+    builder.adjust(2, 1, 1)
     return builder.as_markup()
 
 

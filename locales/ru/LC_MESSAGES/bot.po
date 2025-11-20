@@ -265,3 +265,98 @@ msgid "message_notify_expired_sub"
 msgstr "Здравствуйте 👋\n\n\"
 "Мы заметили, что вы не продлили подписку 😢\n\n\"
 "Если у вас есть замечания или вопросы по нашему сервису, пожалуйста, напишите. Нам важно ваше мнение!"
+#: bot/keyboards/pay.py:11
+msgid "Pay 💳"
+msgstr "Оплатить 💳"
+
+#: bot/keyboards/xtr_pay.py:8
+msgid "Pay {amount}⭐️"
+msgstr "Оплатить {amount}⭐️"
+
+#: bot/keyboards/manual_payment.py:29
+msgid "I have paid ✅"
+msgstr "Я оплатил ✅"
+
+#: bot/handlers/messages.py:33
+msgid "Remaining traffic: unlimited."
+msgstr "Остаток трафика: без ограничений."
+
+#: bot/handlers/messages.py:37
+msgid "Remaining traffic: {gb} GB."
+msgstr "Остаток трафика: {gb} ГБ."
+
+#: bot/handlers/messages.py:41
+msgid "Dear user {name},\n\nYour subscription expires on {date}.\n{traffic}\n\nYour subscription link:\n{sub_url}"
+msgstr "Уважаемый пользователь {name},\n\nСрок действия вашей подписки истекает {date}.\n{traffic}\n\nВаша ссылка подписки:\n{sub_url}"
+
+#: bot/keyboards/main_menu.py:13 bot/handlers/messages.py:55
+msgid "Instructions 📚"
+msgstr "Инструкции 📚"
+
+#: bot/handlers/messages.py:58
+msgid "Choose your platform ⬇️"
+msgstr "Выберите платформу ⬇️"
+
+#: bot/handlers/callbacks.py:139
+msgid "Select payment method ⬇️"
+msgstr "Выберите способ оплаты ⬇️"
+
+#: bot/handlers/callbacks.py:167
+msgid "To pay, use one of the links below. After payment, press «I have paid»."
+msgstr "Для оплаты воспользуйтесь одной из ссылок ниже. После оплаты нажмите «Я оплатил»."
+
+#: bot/handlers/callbacks.py:213
+msgid "Thank you! We will check your payment soon."
+msgstr "Спасибо! Мы скоро проверим ваш платёж."
+
+#: bot/handlers/callbacks.py:242
+msgid "Payment confirmed ✅\nYour subscription is active until {date}."
+msgstr "Оплата подтверждена ✅\nВаша подписка активна до {date}."
+
+#: bot/handlers/callbacks.py:260
+msgid "⚠️ Failed to activate subscription for payment {payment_id}. Error: {error}"
+msgstr "⚠️ Не удалось оформить подписку по платежу {payment_id}. Ошибка: {error}"
+
+#: bot/handlers/callbacks.py:271
+msgid "✅ Payment {payment_id} confirmed, subscription active until {date}."
+msgstr "✅ Платёж {payment_id} подтверждён, подписка активна до {date}."
+
+#: bot/handlers/callbacks.py:288
+msgid "Payment confirmed."
+msgstr "Оплата подтверждена."
+
+#: bot/handlers/callbacks.py:307
+msgid "❌ Payment {payment_id} was rejected by administrator."
+msgstr "❌ Платёж {payment_id} отклонён администратором."
+
+#: bot/handlers/callbacks.py:316
+msgid "Payment not confirmed ❌\nPlease pay via the link in the bot and send a correct confirmation (screenshot or receipt)."
+msgstr "Платёж не подтверждён ❌\nПожалуйста, оплатите по ссылке в боте и отправьте корректное подтверждение (скриншот или чек)."
+
+#: bot/handlers/callbacks.py:325
+msgid "Payment rejected."
+msgstr "Платёж отклонён."
+
+#: bot/handlers/callbacks.py:335
+msgid "Hello, {name} 👋🏻\n\nSelect an action ⬇️"
+msgstr "Привет, {name} 👋🏻\n\nВыберите действие ⬇️"
+
+#: bot/handlers/callbacks.py:357
+msgid "iOS setup:\n1. Install the Happ app from App Store.\n2. Open the app and go to settings.\n3. Tap \"Add server\" or the \"+\" icon.\n4. Copy the key from the Telegram bot.\n5. Paste the key into the app and tap \"Add\".\n6. Enable VPN using the switch at the top.\n\nDownload links for iOS:\n- App Store: {ios_link}"
+msgstr "Настройка iOS:\n1. Установите приложение Happ из App Store.\n2. Откройте приложение и перейдите в настройки.\n3. Нажмите «Добавить сервер» или значок «+».\n4. Скопируйте ключ из Telegram-бота.\n5. Вставьте ключ в приложение и нажмите «Добавить».\n6. Включите VPN переключателем вверху.\n\nСсылки для iOS:\n- App Store: {ios_link}"
+
+#: bot/handlers/callbacks.py:372
+msgid "macOS setup:\n1. Install the Happ app from the App Store.\n2. Open the app and go to settings.\n3. Click \"Add configuration\" or the \"+\" icon.\n4. Copy the key from the Telegram bot.\n5. Paste the key into the app and tap \"Add\".\n6. Enable VPN using the switch at the top.\n\nDownload links for macOS:\n- App Store: {mac_link}"
+msgstr "Настройка macOS:\n1. Установите приложение Happ из App Store.\n2. Откройте приложение и перейдите в настройки.\n3. Нажмите «Добавить конфигурацию» или значок «+».\n4. Скопируйте ключ из Telegram-бота.\n5. Вставьте ключ в приложение и нажмите «Добавить».\n6. Включите VPN переключателем вверху.\n\nСсылки для macOS:\n- App Store: {mac_link}"
+
+#: bot/handlers/callbacks.py:392
+msgid "Android setup:\n1. Install the Happ app from Google Play or APK.\n2. Open the app and go to settings.\n3. Tap \"Add server\" or the \"+\" icon.\n4. Copy the key from the Telegram bot.\n5. Paste the key into the app and tap \"Add\".\n6. Enable VPN using the switch at the top.\n\nDownload links for Android:\n- Google Play: {play}\n- APK (GitHub): {apk}"
+msgstr "Настройка Android:\n1. Установите приложение Happ из Google Play или APK.\n2. Откройте приложение и перейдите в настройки.\n3. Нажмите «Добавить сервер» или значок «+».\n4. Скопируйте ключ из Telegram-бота.\n5. Вставьте ключ в приложение и нажмите «Добавить».\n6. Включите VPN переключателем вверху.\n\nСсылки для Android:\n- Google Play: {play}\n- APK (GitHub): {apk}"
+
+#: bot/handlers/callbacks.py:412
+msgid "Windows setup:\n1. Download and install the app for Windows.\n2. Launch Happ and wait for the interface to load.\n3. Click \"Add configuration\" or the \"+\" icon.\n4. Paste the key from the Telegram bot into the configuration field.\n5. Click \"Save\" and then \"Connect\".\n6. Done! Check the connection by opening any site.\n\nDownload links for Windows:\n- Installer: {win_link}"
+msgstr "Настройка Windows:\n1. Скачайте и установите приложение для Windows.\n2. Запустите Happ и дождитесь загрузки интерфейса.\n3. Нажмите «Добавить конфигурацию» или значок «+».\n4. Вставьте ключ из Telegram-бота в поле конфигурации.\n5. Нажмите «Сохранить», затем «Подключиться».\n6. Готово! Проверьте подключение, открыв любой сайт.\n\nСсылки для Windows:\n- Установщик: {win_link}"
+
+#: bot/handlers/callbacks.py:432
+msgid "Linux setup:\n1. Download and install the app for your OS.\n2. Launch Happ and wait for the interface to load.\n3. Click \"Add configuration\" or the \"+\" icon.\n4. Paste the key from the Telegram bot into the configuration field.\n5. Click \"Save\" and then \"Connect\".\n6. Done! Check the connection by opening any site.\n\nDownload links for Linux:\n- Packages: {linux_link}"
+msgstr "Настройка Linux:\n1. Скачайте и установите приложение для вашей ОС.\n2. Запустите Happ и дождитесь загрузки интерфейса.\n3. Нажмите «Добавить конфигурацию» или значок «+».\n4. Вставьте ключ из Telegram-бота в поле конфигурации.\n5. Нажмите «Сохранить», затем «Подключиться».\n6. Готово! Проверьте подключение, открыв любой сайт.\n\nСсылки для Linux:\n- Пакеты: {linux_link}"

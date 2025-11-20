@@ -106,6 +106,102 @@ msgstr ""
 msgid "5 days free 🆓"
 msgstr ""
 
+#: bot/keyboards/pay.py:11
+msgid "Pay 💳"
+msgstr "Pay 💳"
+
+#: bot/keyboards/xtr_pay.py:8
+msgid "Pay {amount}⭐️"
+msgstr "Pay {amount}⭐️"
+
+#: bot/keyboards/manual_payment.py:29
+msgid "I have paid ✅"
+msgstr "I have paid ✅"
+
+#: bot/handlers/messages.py:33
+msgid "Remaining traffic: unlimited."
+msgstr "Remaining traffic: unlimited."
+
+#: bot/handlers/messages.py:37
+msgid "Remaining traffic: {gb} GB."
+msgstr "Remaining traffic: {gb} GB."
+
+#: bot/handlers/messages.py:41
+msgid "Dear user {name},\n\nYour subscription expires on {date}.\n{traffic}\n\nYour subscription link:\n{sub_url}"
+msgstr "Dear user {name},\n\nYour subscription expires on {date}.\n{traffic}\n\nYour subscription link:\n{sub_url}"
+
+#: bot/keyboards/main_menu.py:13 bot/handlers/messages.py:55
+msgid "Instructions 📚"
+msgstr "Instructions 📚"
+
+#: bot/handlers/messages.py:58
+msgid "Choose your platform ⬇️"
+msgstr "Choose your platform ⬇️"
+
+#: bot/handlers/callbacks.py:139
+msgid "Select payment method ⬇️"
+msgstr "Select payment method ⬇️"
+
+#: bot/handlers/callbacks.py:167
+msgid "To pay, use one of the links below. After payment, press «I have paid»."
+msgstr "To pay, use one of the links below. After payment, press «I have paid»."
+
+#: bot/handlers/callbacks.py:213
+msgid "Thank you! We will check your payment soon."
+msgstr "Thank you! We will check your payment soon."
+
+#: bot/handlers/callbacks.py:242
+msgid "Payment confirmed ✅\nYour subscription is active until {date}."
+msgstr "Payment confirmed ✅\nYour subscription is active until {date}."
+
+#: bot/handlers/callbacks.py:260
+msgid "⚠️ Failed to activate subscription for payment {payment_id}. Error: {error}"
+msgstr "⚠️ Failed to activate subscription for payment {payment_id}. Error: {error}"
+
+#: bot/handlers/callbacks.py:271
+msgid "✅ Payment {payment_id} confirmed, subscription active until {date}."
+msgstr "✅ Payment {payment_id} confirmed, subscription active until {date}."
+
+#: bot/handlers/callbacks.py:288
+msgid "Payment confirmed."
+msgstr "Payment confirmed."
+
+#: bot/handlers/callbacks.py:307
+msgid "❌ Payment {payment_id} was rejected by administrator."
+msgstr "❌ Payment {payment_id} was rejected by administrator."
+
+#: bot/handlers/callbacks.py:316
+msgid "Payment not confirmed ❌\nPlease pay via the link in the bot and send a correct confirmation (screenshot or receipt)."
+msgstr "Payment not confirmed ❌\nPlease pay via the link in the bot and send a correct confirmation (screenshot or receipt)."
+
+#: bot/handlers/callbacks.py:325
+msgid "Payment rejected."
+msgstr "Payment rejected."
+
+#: bot/handlers/callbacks.py:335
+msgid "Hello, {name} 👋🏻\n\nSelect an action ⬇️"
+msgstr "Hello, {name} 👋🏻\n\nSelect an action ⬇️"
+
+#: bot/handlers/callbacks.py:357
+msgid "iOS setup:\n1. Install the Happ app from App Store.\n2. Open the app and go to settings.\n3. Tap \"Add server\" or the \"+\" icon.\n4. Copy the key from the Telegram bot.\n5. Paste the key into the app and tap \"Add\".\n6. Enable VPN using the switch at the top.\n\nDownload links for iOS:\n- App Store: {ios_link}"
+msgstr "iOS setup:\n1. Install the Happ app from App Store.\n2. Open the app and go to settings.\n3. Tap \"Add server\" or the \"+\" icon.\n4. Copy the key from the Telegram bot.\n5. Paste the key into the app and tap \"Add\".\n6. Enable VPN using the switch at the top.\n\nDownload links for iOS:\n- App Store: {ios_link}"
+
+#: bot/handlers/callbacks.py:372
+msgid "macOS setup:\n1. Install the Happ app from the App Store.\n2. Open the app and go to settings.\n3. Click \"Add configuration\" or the \"+\" icon.\n4. Copy the key from the Telegram bot.\n5. Paste the key into the app and tap \"Add\".\n6. Enable VPN using the switch at the top.\n\nDownload links for macOS:\n- App Store: {mac_link}"
+msgstr "macOS setup:\n1. Install the Happ app from the App Store.\n2. Open the app and go to settings.\n3. Click \"Add configuration\" or the \"+\" icon.\n4. Copy the key from the Telegram bot.\n5. Paste the key into the app and tap \"Add\".\n6. Enable VPN using the switch at the top.\n\nDownload links for macOS:\n- App Store: {mac_link}"
+
+#: bot/handlers/callbacks.py:392
+msgid "Android setup:\n1. Install the Happ app from Google Play or APK.\n2. Open the app and go to settings.\n3. Tap \"Add server\" or the \"+\" icon.\n4. Copy the key from the Telegram bot.\n5. Paste the key into the app and tap \"Add\".\n6. Enable VPN using the switch at the top.\n\nDownload links for Android:\n- Google Play: {play}\n- APK (GitHub): {apk}"
+msgstr "Android setup:\n1. Install the Happ app from Google Play or APK.\n2. Open the app and go to settings.\n3. Tap \"Add server\" or the \"+\" icon.\n4. Copy the key from the Telegram bot.\n5. Paste the key into the app and tap \"Add\".\n6. Enable VPN using the switch at the top.\n\nDownload links for Android:\n- Google Play: {play}\n- APK (GitHub): {apk}"
+
+#: bot/handlers/callbacks.py:412
+msgid "Windows setup:\n1. Download and install the app for Windows.\n2. Launch Happ and wait for the interface to load.\n3. Click \"Add configuration\" or the \"+\" icon.\n4. Paste the key from the Telegram bot into the configuration field.\n5. Click \"Save\" and then \"Connect\".\n6. Done! Check the connection by opening any site.\n\nDownload links for Windows:\n- Installer: {win_link}"
+msgstr "Windows setup:\n1. Download and install the app for Windows.\n2. Launch Happ and wait for the interface to load.\n3. Click \"Add configuration\" or the \"+\" icon.\n4. Paste the key from the Telegram bot into the configuration field.\n5. Click \"Save\" and then \"Connect\".\n6. Done! Check the connection by opening any site.\n\nDownload links for Windows:\n- Installer: {win_link}"
+
+#: bot/handlers/callbacks.py:432
+msgid "Linux setup:\n1. Download and install the app for your OS.\n2. Launch Happ and wait for the interface to load.\n3. Click \"Add configuration\" or the \"+\" icon.\n4. Paste the key from the Telegram bot into the configuration field.\n5. Click \"Save\" and then \"Connect\".\n6. Done! Check the connection by opening any site.\n\nDownload links for Linux:\n- Packages: {linux_link}"
+msgstr "Linux setup:\n1. Download and install the app for your OS.\n2. Launch Happ and wait for the interface to load.\n3. Click \"Add configuration\" or the \"+\" icon.\n4. Paste the key from the Telegram bot into the configuration field.\n5. Click \"Save\" and then \"Connect\".\n6. Done! Check the connection by opening any site.\n\nDownload links for Linux:\n- Packages: {linux_link}"
+
 #: bot/keyboards/pay.py:9
 msgid "Pay"
 msgstr ""

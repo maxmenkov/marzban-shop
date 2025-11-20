@@ -5,9 +5,16 @@ from aiogram.utils.i18n import gettext as _
 from aiogram.utils.i18n import lazy_gettext as __
 
 from .commands import start
-from keyboards import get_buy_menu_keyboard, get_back_keyboard, get_main_menu_keyboard, get_subscription_keyboard
+from keyboards import (
+    get_buy_menu_keyboard,
+    get_back_keyboard,
+    get_main_menu_keyboard,
+    get_subscription_keyboard,
+    get_instructions_menu_keyboard,
+)
 from db.methods import had_test_sub, update_test_subscription_state, get_marzban_profile_db
 from utils import marzban_api
+from utils.payments import format_expire
 import glv
 
 router = Router(name="messages-router") 
@@ -20,9 +27,29 @@ async def buy(message: Message):
 async def profile(message: Message):
     user = await marzban_api.get_marzban_profile(message.from_user.id)
     if user is None:
-        await message.answer(_("Your profile is not active at the moment.\n️\nYou can choose \"5 days free 🆓\" or \"Join 🏄🏻‍♂️\"."), reply_markup=get_main_menu_keyboard(False))
+        await message.answer(
+            _("Your profile is not active at the moment.\n️\nYou can choose \"5 days free 🆓\" or \"Join 🏄🏻‍♂️\"."),
+            reply_markup=get_main_menu_keyboard(False),
+        )
         return
-    await message.answer(_("Subscription page ⬇️"), reply_markup=get_subscription_keyboard(glv.config['PANEL_GLOBAL'] + user['subscription_url']))
+    expire_text = format_expire(user.get('expire'))
+    data_limit = user.get('data_limit') or 0
+    used_traffic = user.get('used_traffic') or 0
+    remaining_text = _("Remaining traffic: unlimited.")
+    if data_limit:
+        remaining = max(data_limit - used_traffic, 0)
+        remaining_gb = remaining / (1024 ** 3)
+        remaining_text = _("Remaining traffic: {gb} GB.").format(gb=f"{remaining_gb:.2f}")
+
+    sub_url = glv.config['PANEL_GLOBAL'] + user['subscription_url']
+    name = message.from_user.full_name or message.from_user.first_name or ""
+    text = _(
+        "Dear user {name},\n\n"
+        "Your subscription expires on {date}.\n"
+        "{traffic}\n\n"
+        "Your subscription link:\n{sub_url}"
+    ).format(name=name, date=expire_text, traffic=remaining_text, sub_url=sub_url)
+    await message.answer(text, reply_markup=get_subscription_keyboard(sub_url))
 
 @router.message(F.text == __("Frequent questions ℹ️"))
 async def information(message: Message):
@@ -37,6 +64,14 @@ async def support(message: Message):
         _("Follow the <a href=\"{link}\">link</a> and ask us a question. We are always happy to help 🤗").format(
             link=glv.config['SUPPORT_LINK']),
         reply_markup=get_back_keyboard())
+
+
+@router.message(F.text == __("Instructions 📚"))
+async def instructions(message: Message):
+    await message.answer(
+        _("Choose your platform ⬇️"),
+        reply_markup=get_instructions_menu_keyboard(),
+    )
 
 @router.message(F.text == __("5 days free 🆓"))
 async def test_subscription(message: Message):
